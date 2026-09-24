@@ -1,7 +1,57 @@
-# Cloudstream gradle plugin
+# CimaStream gradle plugin
+
+Build plugin used to compile and package extensions for the **CimaStream** app.
+
+Every extension now belongs to the CimaStream ecosystem:
+
+- Extension API artifact: `com.mehdigm.api:library:pre-release` (published via JitPack from [`mehdigm4life/cimastream`](https://github.com/mehdigm4life/cimastream))
+- Extension packages: `com.mehdigm.cimastream4.*`
+- Plugin id: `com.mehdigm.cimastream4.gradle`
+- Built extension files use the `.cima4` extension
 
 ## How to use
-Look at the [plugin template](https://github.com/recloudstream/plugin-template) to see how to make your own plugins.
+
+In your extension repository's `build.gradle.kts`:
+
+```kotlin
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        maven("https://jitpack.io")
+    }
+
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.13.2")
+        classpath("com.github.mehdigm4life:cimastream-gradle:VERSION")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:VERSION")
+    }
+}
+
+subprojects {
+    apply(plugin = "com.android.library")
+    apply(plugin = "kotlin-android")
+    apply(plugin = "com.mehdigm.cimastream4.gradle")
+
+    dependencies {
+        val cloudstream by configurations
+        cloudstream("com.mehdigm.api:library:pre-release")
+        implementation("com.github.mehdigm4life:NiceHttp:v0.5.0")
+    }
+}
+```
+
+In every provider module annotate the main class with:
+
+```kotlin
+@CimastreamPlugin
+class MainProvider : MainAPI() { ... }
+```
+
+Import the API from `com.mehdigm.cimastream4.*` instead of `com.lagradost.cloudstream3.*`.
+
+Run `./gradlew makePluginsJson` to produce the repository `plugins.json` listing every `.cima4` extension, then publish it on a branch (or use the raw GitHub links) and add the repository URL inside the app.
 
 ## Attribution
-This gradle plugin and the whole plugin system is heavily based on [Aliucord](https://github.com/Aliucord). Go use it, it's a great mobile discord client mod!
+
+This gradle plugin and the whole plugin system is based on [CloudStream](https://github.com/recloudstream) / [recloudstream/gradle](https://github.com/recloudstream/gradle), which is itself heavily based on [Aliucord](https://github.com/Aliucord).

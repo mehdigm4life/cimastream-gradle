@@ -1,4 +1,4 @@
-package com.lagradost.cloudstream3.gradle.tasks
+package com.mehdigm.cimastream4.gradle.tasks
 
 import groovy.json.JsonBuilder
 import groovy.json.JsonSlurper

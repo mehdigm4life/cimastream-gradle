@@ -1,8 +1,8 @@
-package com.lagradost.cloudstream3.gradle.tasks
+package com.mehdigm.cimastream4.gradle.tasks
 
 import com.android.build.gradle.tasks.ProcessLibraryManifest
-import com.lagradost.cloudstream3.gradle.LibraryExtensionCompat
-import com.lagradost.cloudstream3.gradle.getCloudstream
+import com.mehdigm.cimastream4.gradle.LibraryExtensionCompat
+import com.mehdigm.cimastream4.gradle.getCloudstream
 import org.gradle.api.Project
 import org.gradle.api.tasks.bundling.Zip
 import org.gradle.internal.os.OperatingSystem
@@ -22,22 +22,24 @@ fun registerTasks(project: Project) {
         }
     }
 
-    project.tasks.register("generateSources", GenerateSourcesTask::class.java) { task ->
-        task.group = TASK_GROUP
-        val apkinfoProvider = project.provider {
-            extension.apkinfo ?: error(
-                "Task 'generateSources' requires APK info to be configured, " +
-                "but none was found. If this project does not use cloudstream.jar, " +
-                "this task does not apply."
+    if (extension.apkinfo != null) {
+        project.tasks.register("generateSources", GenerateSourcesTask::class.java) { task ->
+            task.group = TASK_GROUP
+            val apkinfoProvider = project.provider {
+                extension.apkinfo ?: error(
+                    "Task 'generateSources' requires APK info to be configured, " +
+                    "but none was found. If this project does not use cimastream.jar, " +
+                    "this task does not apply."
+                )
+            }
+
+            task.urlPrefix.set(apkinfoProvider.map { it.urlPrefix })
+            task.sourcesJarFile.set(project.layout.file(
+                project.provider {
+                    apkinfoProvider.get().cache.resolve("cimastream-sources.jar")
+                })
             )
         }
-
-        task.urlPrefix.set(apkinfoProvider.map { it.urlPrefix })
-        task.sourcesJarFile.set(project.layout.file(
-            project.provider {
-                apkinfoProvider.get().cache.resolve("cloudstream-sources.jar")
-            })
-        )
     }
 
     val pluginClassFile = intermediatesDir.map { it.file("pluginClass") }
@@ -161,12 +163,12 @@ fun registerTasks(project: Project) {
 
         task.isPreserveFileTimestamps = false
         task.archiveBaseName.set(project.name)
-        task.archiveExtension.set("cs3")
+        task.archiveExtension.set("cima4")
         task.archiveVersion.set("")
         task.destinationDirectory.set(project.layout.buildDirectory)
 
         task.doLast {
-            task.logger.lifecycle("Made CloudStream package at ${task.outputs.files.singleFile}")
+            task.logger.lifecycle("Made CimaStream package at ${task.outputs.files.singleFile}")
         }
     }
 
@@ -192,8 +194,8 @@ fun registerTasks(project: Project) {
         task.apiVersion.set(project.provider { extension.apiVersion })
         task.tvTypes.set(project.provider { extension.tvTypes })
 
-        task.cs3File.set(make.flatMap { zip ->
-            zip.outputs.files.let { project.layout.buildDirectory.file("${project.name}.cs3") }
+        task.pluginFile.set(make.flatMap { zip ->
+            zip.outputs.files.let { project.layout.buildDirectory.file("${project.name}.cima4") }
         })
         if (extension.isCrossPlatform) {
             task.jarFile.set(project.layout.buildDirectory.file("${project.name}.jar"))
@@ -207,18 +209,20 @@ fun registerTasks(project: Project) {
         task.pluginEntryFiles.from(pluginEntryFile)
     }
 
-    project.tasks.register("cleanCache", CleanCacheTask::class.java) { task ->
-        task.group = TASK_GROUP
-        val apkinfoProvider = project.provider {
-            extension.apkinfo ?: error(
-                "Cannot clean cache: no cached APK info found. " +
-                "This task only applies to projects that depend on cloudstream.jar."
-            )
-        }
+    if (extension.apkinfo != null) {
+        project.tasks.register("cleanCache", CleanCacheTask::class.java) { task ->
+            task.group = TASK_GROUP
+            val apkinfoProvider = project.provider {
+                extension.apkinfo ?: error(
+                    "Cannot clean cache: no cached APK info found. " +
+                    "This task only applies to projects that depend on cimastream.jar."
+                )
+            }
 
-        task.jarFile.set(project.layout.file(
-            apkinfoProvider.map { it.jarFile }
-        ))
+            task.jarFile.set(project.layout.file(
+                apkinfoProvider.map { it.jarFile }
+            ))
+        }
     }
 
     project.tasks.register("deployWithAdb", DeployWithAdbTask::class.java) { task ->

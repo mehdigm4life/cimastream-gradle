@@ -1,4 +1,4 @@
-package com.lagradost.cloudstream3.gradle.tasks
+package com.mehdigm.cimastream4.gradle.tasks
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.RegularFileProperty
@@ -36,6 +36,6 @@ abstract class CompilePluginJarTask : DefaultTask() {
         val targetFile = targetJarFile.get().asFile
 
         jarFile.copyTo(targetFile, overwrite = true)
-        logger.lifecycle("Made CloudStream cross-platform package at ${targetFile.absolutePath}")
+        logger.lifecycle("Made CimaStream cross-platform package at ${targetFile.absolutePath}")
     }
 }

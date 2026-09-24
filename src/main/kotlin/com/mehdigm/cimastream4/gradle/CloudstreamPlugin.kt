@@ -1,7 +1,7 @@
-package com.lagradost.cloudstream3.gradle
+package com.mehdigm.cimastream4.gradle
 
-import com.lagradost.cloudstream3.gradle.configuration.registerConfigurations
-import com.lagradost.cloudstream3.gradle.tasks.registerTasks
+import com.mehdigm.cimastream4.gradle.configuration.registerConfigurations
+import com.mehdigm.cimastream4.gradle.tasks.registerTasks
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 

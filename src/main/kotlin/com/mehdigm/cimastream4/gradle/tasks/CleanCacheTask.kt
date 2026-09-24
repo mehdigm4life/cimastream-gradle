@@ -1,4 +1,4 @@
-package com.lagradost.cloudstream3.gradle.tasks
+package com.mehdigm.cimastream4.gradle.tasks
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.RegularFileProperty

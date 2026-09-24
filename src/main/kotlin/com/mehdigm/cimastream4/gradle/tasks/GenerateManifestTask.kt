@@ -1,6 +1,6 @@
-package com.lagradost.cloudstream3.gradle.tasks
+package com.mehdigm.cimastream4.gradle.tasks
 
-import com.lagradost.cloudstream3.gradle.entities.PluginManifest
+import com.mehdigm.cimastream4.gradle.entities.PluginManifest
 import groovy.json.JsonBuilder
 import groovy.json.JsonGenerator
 import org.gradle.api.DefaultTask

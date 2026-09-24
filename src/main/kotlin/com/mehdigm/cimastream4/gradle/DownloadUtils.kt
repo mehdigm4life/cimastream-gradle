@@ -1,4 +1,4 @@
-package com.lagradost.cloudstream3.gradle
+package com.mehdigm.cimastream4.gradle
 
 import org.gradle.internal.logging.progress.ProgressLogger
 import java.io.File

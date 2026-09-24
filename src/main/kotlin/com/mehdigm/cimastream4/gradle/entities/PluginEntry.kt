@@ -1,4 +1,4 @@
-package com.lagradost.cloudstream3.gradle.entities
+package com.mehdigm.cimastream4.gradle.entities
 
 data class PluginEntry(
     val url: String,

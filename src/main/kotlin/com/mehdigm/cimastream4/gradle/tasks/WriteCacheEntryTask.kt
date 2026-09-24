@@ -1,6 +1,6 @@
-package com.lagradost.cloudstream3.gradle.tasks
+package com.mehdigm.cimastream4.gradle.tasks
 
-import com.lagradost.cloudstream3.gradle.entities.PluginEntry
+import com.mehdigm.cimastream4.gradle.entities.PluginEntry
 import groovy.json.JsonBuilder
 import groovy.json.JsonGenerator
 import org.gradle.api.DefaultTask
@@ -36,7 +36,7 @@ abstract class WriteCacheEntryTask : DefaultTask() {
 
     @get:InputFile
     @get:PathSensitive(PathSensitivity.NONE)
-    abstract val cs3File: RegularFileProperty
+    abstract val pluginFile: RegularFileProperty
 
     @get:InputFile
     @get:Optional
@@ -47,7 +47,7 @@ abstract class WriteCacheEntryTask : DefaultTask() {
 
     @TaskAction
     fun write() {
-        val cs3 = cs3File.asFile.get()
+        val plugin = pluginFile.asFile.get()
         val jar = jarFile.asFile.orNull?.takeIf { it.exists() }
 
         val name = pluginName.get()
@@ -55,7 +55,7 @@ abstract class WriteCacheEntryTask : DefaultTask() {
         fun rawLink(file: String): String? = rawTemplate?.replace("{file}", file)
 
         val entry = PluginEntry(
-            url = rawLink("${name}.cs3") ?: "",
+            url = rawLink("${name}.cima4") ?: "",
             status = status.get(),
             version = pluginVersion.get(),
             name = name,
@@ -67,8 +67,8 @@ abstract class WriteCacheEntryTask : DefaultTask() {
             iconUrl = iconUrl.orNull,
             apiVersion = apiVersion.get(),
             tvTypes = tvTypes.orNull,
-            fileSize = cs3.length(),
-            fileHash = sha256(cs3),
+            fileSize = plugin.length(),
+            fileHash = sha256(plugin),
             jarFileSize = jar?.length(),
             jarUrl = jar?.let { rawLink("${name}.jar") },
             jarHash = jar?.let { sha256(it) },

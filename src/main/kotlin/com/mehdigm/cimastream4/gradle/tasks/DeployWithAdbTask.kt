@@ -1,4 +1,4 @@
-package com.lagradost.cloudstream3.gradle.tasks
+package com.mehdigm.cimastream4.gradle.tasks
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.RegularFileProperty
@@ -48,14 +48,14 @@ abstract class DeployWithAdbTask : DefaultTask() {
         }
 
         val file: File = pluginFile.get().asFile
-        val path = "/storage/emulated/0/Cloudstream3/plugins/"
+        val path = "/storage/emulated/0/Cimastream4/plugins/"
         val device = devices[0]
         device.push(file, RemoteFile(path + file.name))
 
         // Make the file readonly to work on newer android versions, this does not impact adb push.
         // https://developer.android.com/about/versions/14/behavior-changes-14#safer-dynamic-code-loading
         device.executeShell("chmod", "-w", path + file.name)
-        val args = arrayListOf("start", "-a", "android.intent.action.VIEW", "-d", "cloudstreamapp:")
+        val args = arrayListOf("start", "-a", "android.intent.action.VIEW", "-d", "cimastreamapp:")
         if (waitForDebugger) args.add("-D")
         val response = String(
             device.executeShell("am", *args.toTypedArray()).readAllBytes(), StandardCharsets.UTF_8

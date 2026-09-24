@@ -1,6 +1,6 @@
-package com.lagradost.cloudstream3.gradle.tasks
+package com.mehdigm.cimastream4.gradle.tasks
 
-import com.lagradost.cloudstream3.gradle.download
+import com.mehdigm.cimastream4.gradle.download
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.provider.Property

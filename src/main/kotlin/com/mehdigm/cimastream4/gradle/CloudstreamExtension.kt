@@ -1,4 +1,4 @@
-package com.lagradost.cloudstream3.gradle
+package com.mehdigm.cimastream4.gradle
 
 import org.gradle.api.Project
 import org.gradle.api.plugins.ExtensionContainer
@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 abstract class CloudstreamExtension @Inject constructor(project: Project) {
 
-    val userCache = project.gradle.gradleUserHomeDir.resolve("caches").resolve("cloudstream")
+    val userCache = project.gradle.gradleUserHomeDir.resolve("caches").resolve("cimastream")
 
     val apiVersion = 1
 
@@ -93,9 +93,9 @@ abstract class CloudstreamExtension @Inject constructor(project: Project) {
 }
 
 class ApkInfo(extension: CloudstreamExtension, release: String) {
-    val cache = extension.userCache.resolve("cloudstream")
-    val jarFile = cache.resolve("cloudstream.jar")
-    var urlPrefix = "https://github.com/recloudstream/cloudstream/releases/download/${release}"
+    val cache = extension.userCache.resolve("cimastream")
+    val jarFile = cache.resolve("cimastream.jar")
+    var urlPrefix = "https://github.com/mehdigm4life/cimastream/releases/download/${release}"
 }
 
 class Repo(val user: String, val repo: String, val url: String, val rawLinkFormat: String) {

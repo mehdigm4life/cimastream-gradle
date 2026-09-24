@@ -1,4 +1,4 @@
-package com.lagradost.cloudstream3.gradle.tasks
+package com.mehdigm.cimastream4.gradle.tasks
 
 import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Exec

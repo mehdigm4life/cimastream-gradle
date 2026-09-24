@@ -1,4 +1,4 @@
-package com.lagradost.cloudstream3.gradle.tasks
+package com.mehdigm.cimastream4.gradle.tasks
 
 import com.android.build.gradle.internal.errors.MessageReceiverImpl
 import com.android.build.gradle.options.SyncOptions.ErrorFormatMode
@@ -99,7 +99,7 @@ abstract class CompileDexTask : DefaultTask() {
                         reader.accept(classNode, 0)
 
                         for (annotation in classNode.visibleAnnotations.orEmpty() + classNode.invisibleAnnotations.orEmpty()) {
-                            if (annotation.desc == "Lcom/lagradost/cloudstream3/plugins/CloudstreamPlugin;") {
+                            if (annotation.desc == "Lcom/mehdigm/cimastream4/plugins/CimastreamPlugin;") {
                                 require(detectedPluginClass == null) {
                                     "Only 1 active plugin class per project is supported"
                                 }

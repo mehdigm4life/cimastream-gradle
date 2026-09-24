@@ -1,4 +1,4 @@
-package com.lagradost.cloudstream3.gradle.configuration
+package com.mehdigm.cimastream4.gradle.configuration
 
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Dependency

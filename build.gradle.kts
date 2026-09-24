@@ -7,7 +7,7 @@ plugins {
     id("maven-publish")
 }
 
-group = "com.lagradost.cloudstream3"
+group = "com.mehdigm.cimastream4"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11
@@ -51,9 +51,9 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        create("com.lagradost.cloudstream3.gradle") {
-            id = "com.lagradost.cloudstream3.gradle"
-            implementationClass = "com.lagradost.cloudstream3.gradle.CloudstreamPlugin"
+        create("cimastream4.gradle") {
+            id = "com.mehdigm.cimastream4.gradle"
+            implementationClass = "com.mehdigm.cimastream4.gradle.CloudstreamPlugin"
         }
     }
 }
@@ -67,10 +67,10 @@ publishing {
         if (token != null) {
             maven {
                 credentials {
-                    username = "recloudstream"
+                    username = "mehdigm4life"
                     password = token
                 }
-                setUrl("https://maven.pkg.github.com/recloudstream/gradle")
+                setUrl("https://maven.pkg.github.com/mehdigm4life/cimastream-gradle")
             }
         }
     }
