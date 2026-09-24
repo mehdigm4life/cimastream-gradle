@@ -53,7 +53,7 @@ gradlePlugin {
     plugins {
         create("cimastream4.gradle") {
             id = "com.mehdigm.cimastream4.gradle"
-            implementationClass = "com.mehdigm.cimastream4.gradle.CloudstreamPlugin"
+            implementationClass = "com.mehdigm.cimastream4.gradle.CimastreamPlugin"
         }
     }
 }

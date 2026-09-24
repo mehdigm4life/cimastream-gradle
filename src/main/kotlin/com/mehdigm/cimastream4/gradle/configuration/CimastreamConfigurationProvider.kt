@@ -5,16 +5,16 @@ import org.gradle.api.artifacts.Dependency
 
 /**
  * Resolves the declared CimaStream API dependency (e.g.
- * cloudstream("com.mehdigm.api:library:pre-release")) from the configured
+ * cimastream("com.mehdigm.api:library:pre-release")) from the configured
  * repositories (JitPack) and adds it to the compileOnly classpath.
  *
  * The API classes are never bundled into the extension package, they are
  * resolved against the app itself at runtime.
  */
-abstract class CloudstreamConfigurationProvider : IConfigurationProvider {
+abstract class CimastreamConfigurationProvider : IConfigurationProvider {
 
     override val name: String
-        get() = "cloudstream"
+        get() = "cimastream"
 
     override fun provide(project: Project, dependency: Dependency) {
         val group = dependency.group ?: "unknown"

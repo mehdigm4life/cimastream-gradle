@@ -2,16 +2,16 @@ package com.mehdigm.cimastream4.gradle.tasks
 
 import com.android.build.gradle.tasks.ProcessLibraryManifest
 import com.mehdigm.cimastream4.gradle.LibraryExtensionCompat
-import com.mehdigm.cimastream4.gradle.getCloudstream
+import com.mehdigm.cimastream4.gradle.getCimastream
 import org.gradle.api.Project
 import org.gradle.api.tasks.bundling.Zip
 import org.gradle.internal.os.OperatingSystem
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-const val TASK_GROUP = "cloudstream"
+const val TASK_GROUP = "cimastream"
 
 fun registerTasks(project: Project) {
-    val extension = project.extensions.getCloudstream()
+    val extension = project.extensions.getCimastream()
     val intermediatesDir = project.layout.buildDirectory.dir("intermediates")
 
     if (project.rootProject.tasks.findByName("makePluginsJson") == null) {

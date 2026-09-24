@@ -5,6 +5,7 @@ Build plugin used to compile and package extensions for the **CimaStream** app.
 Every extension now belongs to the CimaStream ecosystem:
 
 - Extension API artifact: `com.mehdigm.api:library:pre-release` (published via JitPack from [`mehdigm4life/cimastream`](https://github.com/mehdigm4life/cimastream))
+- Extension DSL: `cimastream("com.mehdigm.api:library:pre-release")` and `cimastream { ... }`
 - Extension packages: `com.mehdigm.cimastream4.*`
 - Plugin id: `com.mehdigm.cimastream4.gradle`
 - Built extension files use the `.cima4` extension
@@ -33,9 +34,16 @@ subprojects {
     apply(plugin = "kotlin-android")
     apply(plugin = "com.mehdigm.cimastream4.gradle")
 
+    cimastream {
+        description = "My provider"
+        authors = listOf("Your Name")
+        language = "ar"
+        tvTypes = listOf("Movie", "TvSeries")
+    }
+
     dependencies {
-        val cloudstream by configurations
-        cloudstream("com.mehdigm.api:library:pre-release")
+        val cimastream by configurations
+        cimastream("com.mehdigm.api:library:pre-release")
         implementation("com.github.mehdigm4life:NiceHttp:v0.5.0")
     }
 }

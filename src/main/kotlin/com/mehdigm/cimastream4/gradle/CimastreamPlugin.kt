@@ -5,10 +5,10 @@ import com.mehdigm.cimastream4.gradle.tasks.registerTasks
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-abstract class CloudstreamPlugin : Plugin<Project> {
+abstract class CimastreamPlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
-        project.extensions.create("cloudstream", CloudstreamExtension::class.java, project)
+        project.extensions.create("cimastream", CimastreamExtension::class.java, project)
         registerTasks(project)
         registerConfigurations(project)
     }

@@ -4,7 +4,7 @@ import org.gradle.api.Project
 import org.gradle.api.plugins.ExtensionContainer
 import javax.inject.Inject
 
-abstract class CloudstreamExtension @Inject constructor(project: Project) {
+abstract class CimastreamExtension @Inject constructor(project: Project) {
 
     val userCache = project.gradle.gradleUserHomeDir.resolve("caches").resolve("cimastream")
 
@@ -92,7 +92,7 @@ abstract class CloudstreamExtension @Inject constructor(project: Project) {
     var isCrossPlatform = false
 }
 
-class ApkInfo(extension: CloudstreamExtension, release: String) {
+class ApkInfo(extension: CimastreamExtension, release: String) {
     val cache = extension.userCache.resolve("cimastream")
     val jarFile = cache.resolve("cimastream.jar")
     var urlPrefix = "https://github.com/mehdigm4life/cimastream/releases/download/${release}"
@@ -106,6 +106,6 @@ class Repo(val user: String, val repo: String, val url: String, val rawLinkForma
     }
 }
 
-fun ExtensionContainer.getCloudstream(): CloudstreamExtension {
-    return getByName("cloudstream") as CloudstreamExtension
+fun ExtensionContainer.getCimastream(): CimastreamExtension {
+    return getByName("cimastream") as CimastreamExtension
 }

@@ -111,7 +111,7 @@ abstract class CompileDexTask : DefaultTask() {
 
                     val output = pluginClassFile.get().asFile
                     require(detectedPluginClass != null) {
-                        "No plugin class annotated with @CloudstreamPlugin was found"
+                        "No plugin class annotated with @CimastreamPlugin was found"
                     }
 
                     output.parentFile.mkdirs()
