@@ -56,10 +56,14 @@ In every provider module annotate the main class with:
 class MainProvider : MainAPI() { ... }
 ```
 
-Import the API from `com.mehdigm.cimastream4.*` instead of `com.lagradost.cloudstream3.*`.
+Import the API from `com.mehdigm.cimastream4.*`.
 
 Run `./gradlew makePluginsJson` to produce the repository `plugins.json` listing every `.cima4` extension, then publish it on a branch (or use the raw GitHub links) and add the repository URL inside the app.
 
-## Attribution
+## Maintainer
 
-This gradle plugin and the whole plugin system is based on [CloudStream](https://github.com/recloudstream) / [recloudstream/gradle](https://github.com/recloudstream/gradle), which is itself heavily based on [Aliucord](https://github.com/Aliucord).
+- [mehdigm4life](https://github.com/mehdigm4life) — owner and maintainer of the CimaStream ecosystem
+
+## License
+
+Released under the GNU Lesser General Public License v3.0. See [LICENSE](LICENSE).
