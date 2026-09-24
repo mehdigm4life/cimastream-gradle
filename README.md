@@ -4,8 +4,8 @@ Build plugin used to compile and package extensions for the **CimaStream** app.
 
 Every extension now belongs to the CimaStream ecosystem:
 
-- Extension API artifact: `com.github.mehdigm4life.cimastream:library-android:pre-release` (the Android AAR of the CimaStream API, published via JitPack from [`mehdigm4life/cimastream`](https://github.com/mehdigm4life/cimastream))
-- Extension DSL: `cimastream("com.github.mehdigm4life.cimastream:library-android:pre-release")` and `cimastream { ... }`
+- Extension API artifact: `com.github.mehdigm4life.cimastream:library-android:api-1.0.0` (the Android AAR of the CimaStream API, published via JitPack from [`mehdigm4life/cimastream`](https://github.com/mehdigm4life/cimastream))
+- Extension DSL: `cimastream("com.github.mehdigm4life.cimastream:library-android:api-1.0.0")` and `cimastream { ... }`
 - Extension packages: `com.mehdigm.cimastream4.*`
 - Plugin id: `com.mehdigm.cimastream4.gradle`
 - Built extension files use the `.cima4` extension
@@ -64,7 +64,7 @@ android {
 
 dependencies {
     val cimastream by configurations
-    cimastream("com.github.mehdigm4life.cimastream:library-android:pre-release")
+    cimastream("com.github.mehdigm4life.cimastream:library-android:api-1.0.0")
     implementation("com.github.mehdigm4life:NiceHttp:v0.5.0")
 }
 ```
